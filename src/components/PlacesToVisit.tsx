@@ -52,7 +52,7 @@ const nearbyPlaces = [
   {
     name: "Giddalur Railway Station",
     description: "connecting to major cities. Serves as a transit hub for surrounding villages.",
-    distance: "12 km",
+    distance: "12 km From Pluguntipalli",
     link: "https://www.google.com/maps/place/Giddaluru+Railway+Station/@15.379469,78.9233687,634m/data=!3m1!1e3!4m10!1m2!2m1!1sgiddalur+railway+station!3m6!1s0x3bb4e427028c2da3:0x9743593fc6153a3b!8m2!3d15.3793268!4d78.9263358!15sChhnaWRkYWx1ciByYWlsd2F5IHN0YXRpb25aGiIYZ2lkZGFsdXIgcmFpbHdheSBzdGF0aW9ukgEKdHJhaW5feWFyZKoBVRABKhMiD3JhaWx3YXkgc3RhdGlvbigAMh4QASIaEPE7TflKcIVcG3cFncRvBkGLW11ITRI7VpUyHBACIhhnaWRkYWx1ciByYWlsd2F5IHN0YXRpb27gAQA!16s%2Fg%2F11f04d1_sg?entry=ttu&g_ep=EgoyMDI1MDUwMy4wIKXMDSoASAFQAw%3D%3D",
     image: "/Giddalur Railway Station Board.png",
     icon: <TrainFront size={14} />
@@ -67,20 +67,21 @@ const nearbyPlaces = [
   {
     name: "Cumbum Cheruvu",
     description: " ",
+    distance: "25 km From Pluguntipalli",
     link: "https://www.google.com/maps/place/CUMBUM+CHERUVU+alugu/@15.5907554,79.0811935,1266m/data=!3m1!1e3!4m10!1m2!2m1!1scumbum+cheruvu!3m6!1s0x3bb521b26c28cd6b:0xffdc9bfb4114f8e7!8m2!3d15.5907554!4d79.0902057!15sCg5jdW1idW0gY2hlcnV2dZIBEnRvdXJpc3RfYXR0cmFjdGlvbqoBQxABKgsiB2NoZXJ1dnUoADIeEAEiGqleTACV_mY4xbJ-iQlwhu5IgaQeGhSiTxGoMhIQAiIOY3VtYnVtIGNoZXJ1dnXgAQA!16s%2Fg%2F11r2j83dkb?entry=ttu&g_ep=EgoyMDI1MDUwMy4wIKXMDSoASAFQAw%3D%3D",
     image: "/Cumbum Lake.png"
   },
   {
     name: "Kasinayana Ashramam, Jyothi",
     description: "",
-    distance: "30 km",
+    distance: "30 km From Pluguntipalli",
     link: "https://www.google.com/maps/place/Kasinayana+Ashramam,+Jyothi/@15.0609535,78.7938688,167m/data=!3m1!1e3!4m14!1m7!3m6!1s0x3bb48db4dc96ee31:0xdbb2f83093a2f3a5!2sKasinayana+Ashramam,+Jyothi!8m2!3d15.0611529!4d78.7939061!16s%2Fg%2F1w6r6qpr!3m5!1s0x3bb48db4dc96ee31:0xdbb2f83093a2f3a5!8m2!3d15.0611529!4d78.7939061!16s%2Fg%2F1w6r6qpr?entry=ttu&g_ep=EgoyMDI1MDUwMy4wIKXMDSoASAFQAw%3D%3D",
     image: "/Kasinayana Ashramam.jpg"
   },
   {
     name: "Brahmamgari Matham",
     description: "",
-    distance: "22 km",
+    distance: "22 km From Pluguntipalli",
     link: "https://www.google.com/maps/place/Sri+Achalananda+Swamy+Mandiram/@14.8548771,78.8704599,1089m/data=!3m1!1e3!4m15!1m8!3m7!1s0x3bb49b7c97db3d17:0xa6caf9e02027a32c!2sBrahmamgari+Matam,+Palugurallapalle+Part+IV,+Andhra+Pradesh+516503!3b1!8m2!3d14.8590686!4d78.8734029!16s%2Fm%2F02r8svd!3m5!1s0x3bb49b7da7947393:0x2773108738193962!8m2!3d14.8563508!4d78.8751211!16s%2Fg%2F11hbt2hz7m?entry=ttu&g_ep=EgoyMDI1MDUwMy4wIKXMDSoASAFQAw%3D%3D",
     image: "/Brahmamgari Matham.png"
   }
