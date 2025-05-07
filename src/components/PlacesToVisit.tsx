@@ -51,7 +51,7 @@ const villageAttractions = [
 const nearbyPlaces = [
   {
     name: "Giddalur Railway Station",
-    description: "Main railway station connecting Paluguntipalli to major cities. Serves as a transit hub for surrounding villages.",
+    description: "connecting to major cities. Serves as a transit hub for surrounding villages.",
     distance: "12 km",
     link: "https://www.google.com/maps/place/Giddaluru+Railway+Station/@15.379469,78.9233687,634m/data=!3m1!1e3!4m10!1m2!2m1!1sgiddalur+railway+station!3m6!1s0x3bb4e427028c2da3:0x9743593fc6153a3b!8m2!3d15.3793268!4d78.9263358!15sChhnaWRkYWx1ciByYWlsd2F5IHN0YXRpb25aGiIYZ2lkZGFsdXIgcmFpbHdheSBzdGF0aW9ukgEKdHJhaW5feWFyZKoBVRABKhMiD3JhaWx3YXkgc3RhdGlvbigAMh4QASIaEPE7TflKcIVcG3cFncRvBkGLW11ITRI7VpUyHBACIhhnaWRkYWx1ciByYWlsd2F5IHN0YXRpb27gAQA!16s%2Fg%2F11f04d1_sg?entry=ttu&g_ep=EgoyMDI1MDUwMy4wIKXMDSoASAFQAw%3D%3D",
     image: "/Giddalur Railway Station Board.png",
@@ -59,30 +59,27 @@ const nearbyPlaces = [
   },
   {
     name: "Rangaswamy Gundam",
-    description: "Sri Nemaligundla Ranganayaka Swamy Temple is a famous temple located in the middle of the thick Nallamala forest and is known for its waterfalls called Rangaswamy Gundam or Nemaligundla Falls.",
+    description: "",
     distance: "17 km From Pluguntipalli",
     link: "https://www.google.com/maps/place/Sri+Nemali+Gundla+Ranganayakaswamy+Temple/@15.5147678,78.8677641,190m/data=!3m1!1e3!4m14!1m7!3m6!1s0x3bb51d6e5fa314c9:0x876c07ed15fa7ca3!2sRangaswamy+Gundam!8m2!3d15.5153118!4d78.8695807!16s%2Fg%2F1q62kkffn!3m5!1s0x3bb51d6f8753c2a7:0x87adba392bcef6e4!8m2!3d15.5148813!4d78.8685384!16s%2Fg%2F1tgnkjbz?entry=ttu&g_ep=EgoyMDI1MDUwMy4wIKXMDSoASAFQAw%3D%3D",
     image: "/Rangaswamy Gundam.jpg"
   },
   {
     name: "Cumbum Cheruvu",
-    description: "Cumbum Lake, also known as Gundlakamma Lake, was built on the Gundlakamma rivulet upon the Nallamala hills. It is one of the oldest man-made lakes in Asia. The anicut was built by the Vijayanagar Princess Varadharajamma (also known as Ruchidevi), wife of Sri Krishna Devaraya. She was also the daughter of Gajapatis of Odisha. The lake is about 7 kilometres (4.3 mi) long and about 3.5 kilometres (2.2 mi) wide. According to the Imperial Gazette of India, at the turn of the 20th century, the dam was 57 feet (17 m) tall, and the drainage area was 430 square miles (1,100 km2). At present the lake has an effective storage capacity of 3.38 tmc ft. The directly irrigated land is about 10,300 acres (42 km2) in all. It is the second largest irrigation tank in Asia. Cumbum Lake is accessible both by the Guntur-Nandyal railway line and from Ongole by road.",
-    distance: "25 km From Pluguntipalli",
+    description: " ",
     link: "https://www.google.com/maps/place/CUMBUM+CHERUVU+alugu/@15.5907554,79.0811935,1266m/data=!3m1!1e3!4m10!1m2!2m1!1scumbum+cheruvu!3m6!1s0x3bb521b26c28cd6b:0xffdc9bfb4114f8e7!8m2!3d15.5907554!4d79.0902057!15sCg5jdW1idW0gY2hlcnV2dZIBEnRvdXJpc3RfYXR0cmFjdGlvbqoBQxABKgsiB2NoZXJ1dnUoADIeEAEiGqleTACV_mY4xbJ-iQlwhu5IgaQeGhSiTxGoMhIQAiIOY3VtYnVtIGNoZXJ1dnXgAQA!16s%2Fg%2F11r2j83dkb?entry=ttu&g_ep=EgoyMDI1MDUwMy4wIKXMDSoASAFQAw%3D%3D",
     image: "/Cumbum Lake.png"
   },
   {
     name: "Kasinayana Ashramam, Jyothi",
-    description: "Kasinayana, a spiritual leader. He was born in Bedusupalli , Sitaramapuram mandal , Sri Potti Sriramulu Nellore district , Andhra Pradesh . His parents were Kasamma and Subba Reddy. He was the second child of this couple. His original name was Munnalli Kasireddy. In his childhood, he was influenced by his guru Athiracha Guruvayya. He made many pilgrimages. He visited many places from Kashi to Kanyakumari. He died on 6 December 1999.",
-    distance: "70 km From Paluguntipalli",
+    description: "",
     distance: "30 km",
     link: "https://www.google.com/maps/place/Kasinayana+Ashramam,+Jyothi/@15.0609535,78.7938688,167m/data=!3m1!1e3!4m14!1m7!3m6!1s0x3bb48db4dc96ee31:0xdbb2f83093a2f3a5!2sKasinayana+Ashramam,+Jyothi!8m2!3d15.0611529!4d78.7939061!16s%2Fg%2F1w6r6qpr!3m5!1s0x3bb48db4dc96ee31:0xdbb2f83093a2f3a5!8m2!3d15.0611529!4d78.7939061!16s%2Fg%2F1w6r6qpr?entry=ttu&g_ep=EgoyMDI1MDUwMy4wIKXMDSoASAFQAw%3D%3D",
     image: "/Kasinayana Ashramam.jpg"
   },
   {
     name: "Brahmamgari Matham",
-    description: "Bramhamgari Matham is a village in Kadapa district of the Indian state of Andhra Pradesh. It is located in Brahmamgari Matham mandal of Badvel revenue division. It is a pilgrimage centre. The village is known as Sri Pothuluri Veera Brahmandra Swamy who entered into a samadhi alive in front of his disciples. He is considered to be the author of the Kālagnānaṁ, a book of predictions. His prophetic texts are also known as the Govinda Vakyas.",
-    distance: "85 km From Paluguntipalli",
+    description: "",
     distance: "22 km",
     link: "https://www.google.com/maps/place/Sri+Achalananda+Swamy+Mandiram/@14.8548771,78.8704599,1089m/data=!3m1!1e3!4m15!1m8!3m7!1s0x3bb49b7c97db3d17:0xa6caf9e02027a32c!2sBrahmamgari+Matam,+Palugurallapalle+Part+IV,+Andhra+Pradesh+516503!3b1!8m2!3d14.8590686!4d78.8734029!16s%2Fm%2F02r8svd!3m5!1s0x3bb49b7da7947393:0x2773108738193962!8m2!3d14.8563508!4d78.8751211!16s%2Fg%2F11hbt2hz7m?entry=ttu&g_ep=EgoyMDI1MDUwMy4wIKXMDSoASAFQAw%3D%3D",
     image: "/Brahmamgari Matham.png"
