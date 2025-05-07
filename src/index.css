@@ -1,0 +1,560 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 33 43% 58%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 33 43% 58%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 142 64% 24%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 142 64% 24%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    @apply overflow-x-hidden scroll-smooth;
+  }
+
+  body {
+    @apply bg-white text-foreground font-lato overflow-x-hidden dark:bg-[#252525] dark:text-white;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-playfair;
+  }
+  
+  button {
+    @apply text-black dark:text-white border-white/20 dark:border-white/10;
+  }
+
+  input, 
+  textarea, 
+  select {
+    @apply bg-white border-gray-200 text-gray-800 dark:bg-gray-800 dark:border-gray-700 dark:text-white;
+  }
+
+  label {
+    @apply text-gray-700 dark:text-gray-300;
+  }
+
+  /* Make sure all text in events section is visible */
+  #events, .event-time, .event-card, .event-title, .event-description, .gallery-controls, #events-today {
+    @apply text-[#000000] dark:text-white;
+  }
+  
+  /* Make sure show more button is visible */
+  .show-more-button {
+    @apply text-[#000000] dark:text-white font-medium;
+  }
+  
+  /* Make all time displays visible */
+  .time-display, .date-display, .event-time, #calendar {
+    @apply text-[#000000] dark:text-white !important;
+  }
+
+  /* Ensure all map texts are visible */
+  .mapboxgl-popup-content, .mapboxgl-popup-content * {
+    @apply text-[#000000] dark:text-white;
+  }
+
+  /* Improved responsiveness */
+  @screen sm {
+    .container {
+      @apply px-4;
+    }
+  }
+
+  @screen md {
+    .container {
+      @apply px-6;
+    }
+  }
+
+  @screen lg {
+    .container {
+      @apply px-8;
+    }
+  }
+
+  /* Fix for dark mode button text visibility */
+  .dark .btn-primary, 
+  .dark .btn-secondary, 
+  .dark .btn-outline,
+  .dark .hero-button,
+  .dark button[type="submit"] {
+    @apply text-white !important;
+  }
+  
+  /* Fix for Event section dark mode */
+  .dark .event-card {
+    @apply bg-[#333333] border-gray-700;
+  }
+  
+  /* Fix for dropdown content text */
+  .dark .dropdown-menu-content * {
+    @apply text-white;
+  }
+  
+  /* Fix for Sheet dialog in dark mode */
+  .dark .sheet-content * {
+    @apply text-white;
+  }
+  
+  /* Dynamic border colors for cards */
+  .dark .card {
+    @apply border-gray-700;
+  }
+  
+  /* Improved mobile menu */
+  .mobile-menu-item {
+    @apply w-full px-4 py-3 rounded-lg text-left hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors;
+  }
+}
+
+@layer components {
+  /* Enhanced hover effects */
+  .heritage-link {
+    @apply relative inline-block after:content-[''] after:absolute after:w-full after:scale-x-0 
+           after:h-0.5 after:bottom-0 after:left-0 after:bg-heritage dark:after:bg-white after:origin-bottom-right 
+           after:transition-transform after:duration-300 hover:after:scale-x-100 
+           hover:after:origin-bottom-left;
+  }
+  
+  .hover-scale {
+    @apply transition-transform duration-300 hover:scale-105;
+  }
+  
+  .section-title {
+    @apply relative text-3xl md:text-4xl font-bold mb-12 text-center text-[#000000] dark:text-white;
+  }
+  
+  .section-title::after {
+    content: '';
+    @apply absolute w-20 h-1 bg-heritage dark:bg-white bottom-[-0.75rem] left-1/2 transform -translate-x-1/2;
+  }
+  
+  /* Enhanced button styles for dark mode */
+  .hero-button {
+    @apply bg-heritage dark:bg-[#403E43] hover:bg-heritage-dark dark:hover:bg-[#333333] 
+           text-white font-medium px-6 py-3 
+           rounded-full transition-all duration-300 transform hover:shadow-lg 
+           hover:-translate-y-1 inline-flex items-center gap-2;
+  }
+  
+  .btn-outline {
+    @apply border-2 border-heritage dark:border-white text-heritage dark:text-white
+           hover:bg-heritage dark:hover:bg-[#403E43] hover:text-white 
+           font-medium px-6 py-2 rounded-full transition-all duration-300 inline-flex 
+           items-center justify-center gap-2;
+  }
+  
+  .gallery-item {
+    @apply relative overflow-hidden rounded-lg shadow-lg transition-all duration-300;
+  }
+  
+  .gallery-item img, .gallery-item video {
+    @apply w-full h-full object-cover transition-transform duration-500 hover:scale-110;
+  }
+  
+  /* Improved navbar styling for better visibility */
+  .navbar-scrolled {
+    @apply bg-white/95 backdrop-blur bg-opacity-90 dark:bg-[#252525] dark:bg-opacity-95 shadow-md border-b border-gray-100 dark:border-gray-800;
+  }
+  
+  .dropdown-content {
+    @apply bg-white border-gray-200 text-gray-800 dark:bg-[#252525] dark:border-gray-700 dark:text-white;
+  }
+
+  .page-container {
+    @apply overflow-x-hidden w-full;
+  }
+
+  .shimmer-effect {
+    background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0) 100%);
+    animation: shimmer 3s infinite;
+  }
+
+  .btn-animate {
+    @apply transition-all duration-300 transform hover:-translate-y-0.5 hover:shadow-lg active:scale-95;
+  }
+
+  /* Dark mode styling */
+  .dark .btn-custom {
+    @apply bg-[#403E43] text-white hover:bg-[#333333];
+  }
+
+  /* Glass card effect with improved visibility */
+  .glass-card {
+    @apply backdrop-blur-md bg-white/10 border border-white/20 rounded-lg;
+  }
+
+  .dark .glass-card {
+    @apply backdrop-blur-md bg-[#252525]/20 border border-white/20 rounded-lg text-white;
+  }
+
+  /* 3D card effect */
+  .card-3d {
+    @apply transition-all duration-300;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+  }
+
+  .card-3d:hover {
+    transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
+  }
+
+  /* Improved hover animations */
+  .link-hover {
+    @apply relative overflow-hidden;
+  }
+
+  .link-hover::after {
+    @apply absolute bottom-0 left-0 w-full h-0.5 bg-green-600 dark:bg-white origin-left transform scale-x-0 transition-transform duration-300 ease-out;
+    content: '';
+  }
+
+  .link-hover:hover::after {
+    @apply transform scale-x-100;
+  }
+  
+  /* Custom mapbox styling */
+  .mapboxgl-popup {
+    @apply max-w-xs;
+  }
+
+  .mapboxgl-popup-content {
+    @apply bg-white dark:bg-[#2a2a2a] text-gray-800 dark:text-white p-4 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700;
+  }
+  
+  .mapboxgl-popup-close-button {
+    @apply text-gray-500 dark:text-white hover:text-gray-800 dark:hover:text-white text-lg;
+  }
+  
+  /* Removes Mapbox attribution */
+  .mapboxgl-ctrl-bottom-left,
+  .mapboxgl-ctrl-bottom-right {
+    @apply hidden;
+  }
+  
+  /* Enhanced theme transition effects */
+  .theme-transition {
+    @apply transition-colors duration-700 ease-in-out;
+  }
+  
+  .theme-transition-overlay {
+    position: fixed;
+    pointer-events: none;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    opacity: 0;
+    transition: opacity 700ms ease;
+  }
+  
+  .theme-transition-to-dark {
+    background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(0,0,0,0.95) 0%, rgba(0,0,0,0) 70%);
+    animation: fadeInOut 700ms ease;
+  }
+  
+  .theme-transition-to-light {
+    background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(255,255,255,0.95) 0%, rgba(255,255,255,0) 70%);
+    animation: fadeInOut 700ms ease;
+  }
+
+  /* Village and nearby places tabs */
+  .place-tab {
+    @apply px-4 py-2 rounded-full font-medium transition-all duration-300;
+  }
+  
+  .place-tab.active {
+    @apply bg-heritage text-white dark:bg-[#403E43];
+  }
+  
+  /* Improved animation for theme toggle */
+  .theme-icon-enter {
+    animation: iconEnter 0.5s forwards;
+  }
+  
+  .theme-icon-exit {
+    animation: iconExit 0.5s forwards;
+  }
+  
+  /* New animations for language switcher */
+  .language-badge {
+    @apply inline-flex items-center justify-center px-2 py-1 text-xs font-bold rounded-full bg-heritage/10 text-heritage dark:bg-white/10 dark:text-white;
+  }
+
+  /* Text heading animations */
+  .animate-heading {
+    @apply relative inline-block;
+    transition: transform 0.3s ease, color 0.3s ease;
+  }
+
+  .animate-heading:hover {
+    @apply text-heritage dark:text-heritage-light;
+    transform: translateY(-2px);
+  }
+
+  .animate-heading::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-full h-0.5 bg-heritage dark:bg-heritage-light scale-x-0 origin-left transition-transform duration-300 ease-out;
+  }
+
+  .animate-heading:hover::after {
+    @apply scale-x-100;
+  }
+  
+  /* New pulsating button effect */
+  .pulse-btn {
+    @apply relative;
+  }
+  
+  .pulse-btn::after {
+    content: '';
+    @apply absolute inset-0 rounded-full bg-heritage/30 dark:bg-white/30 scale-150 opacity-0 z-[-1];
+    animation: pulse-animation 2s infinite;
+  }
+  
+  /* New date/time display animation */
+  .time-section {
+    @apply relative overflow-hidden;
+  }
+  
+  .time-section::after {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-r from-transparent via-white/20 dark:via-white/10 to-transparent;
+    animation: time-shimmer 3s infinite;
+  }
+}
+
+@keyframes pulse-animation {
+  0% { transform: scale(0.95); opacity: 0; }
+  50% { transform: scale(1.05); opacity: 0.3; }
+  100% { transform: scale(0.95); opacity: 0; }
+}
+
+@keyframes time-shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -50% 0; }
+  100% { background-position: 150% 0; }
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(0.8); opacity: 0.8; }
+  50% { transform: scale(1.2); opacity: 0.4; }
+  100% { transform: scale(0.8); opacity: 0.8; }
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; }
+  50% { opacity: 0.8; }
+  100% { opacity: 0; }
+}
+
+@keyframes iconEnter {
+  0% { opacity: 0; transform: scale(0.5) rotate(-180deg); }
+  100% { opacity: 1; transform: scale(1) rotate(0); }
+}
+
+@keyframes iconExit {
+  0% { opacity: 1; transform: scale(1) rotate(0); }
+  100% { opacity: 0; transform: scale(0.5) rotate(180deg); }
+}
+
+@keyframes rayAnimation {
+  0% { transform: scale(1); opacity: 0.3; }
+  50% { transform: scale(2); opacity: 0.7; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+
+@keyframes glowPulse {
+  0% { filter: drop-shadow(0 0 2px rgba(255, 215, 0, 0.7)); }
+  50% { filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.9)); }
+  100% { filter: drop-shadow(0 0 2px rgba(255, 215, 0, 0.7)); }
+}
+
+@keyframes moonGlow {
+  0% { filter: drop-shadow(0 0 2px rgba(120, 120, 255, 0.5)); }
+  50% { filter: drop-shadow(0 0 5px rgba(120, 120, 255, 0.7)); }
+  100% { filter: drop-shadow(0 0 2px rgba(120, 120, 255, 0.5)); }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-fade-in {
+  @apply opacity-0 translate-y-4;
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.loading-ring {
+  animation: pulse-ring 2s ease-in-out infinite;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100 dark:bg-gray-800;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-heritage dark:bg-white rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-heritage-dark dark:bg-gray-300;
+}
+
+/* Dark mode button effect */
+.dark .btn-click::after {
+  @apply bg-white/10;
+}
+
+/* Button hover effects */
+.btn-click {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-click::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.btn-click:active::after {
+  width: 200%;
+  height: 200%;
+}
+
+/* Custom transitions */
+.fade-transition {
+  @apply transition-opacity duration-300;
+}
+
+/* Better mobile responsiveness */
+@media (max-width: 640px) {
+  .section-title {
+    @apply text-2xl;
+  }
+
+  .container {
+    @apply px-4;
+  }
+  
+  /* Improved mobile navbar */
+  .mobile-navbar {
+    @apply py-2 bg-white/95 dark:bg-[#252525]/95 backdrop-blur-sm border-b border-gray-200 dark:border-gray-800;
+  }
+  
+  /* Mobile menu items with better contrast */
+  .mobile-menu-item {
+    @apply text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800;
+  }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Mobile optimization */
+@media (max-width: 768px) {
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Improved mobile menu appearance */
+  .sheet-content {
+    @apply pb-16; /* Add extra padding at bottom for better scrolling */
+  }
+  
+  /* Fixed mobile nav positioning */
+  .mobile-fixed-nav {
+    @apply fixed bottom-0 left-0 right-0 bg-white dark:bg-[#252525] border-t border-gray-200 dark:border-gray-800 z-40;
+  }
+}
