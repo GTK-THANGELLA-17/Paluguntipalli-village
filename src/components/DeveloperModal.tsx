@@ -136,10 +136,9 @@ const DeveloperModal = ({ isOpen, onClose }: DeveloperModalProps) => {
             </p>
 
             <div>
-              <h4 className="font-semibold text-white">Tech Stack Of This Website</h4>
+              <h4 className="font-semibold text-white"></h4>
               <p className="text-gray-400">
-                React, TypeScript, TailwindCSS, shadcn/ui, Recharts, Git,
-                Vercel
+               
               </p>
             </div>
 
