@@ -23,7 +23,7 @@ const Footer = () => {
               className="bg-black text-white hover:bg-gray-800 dark:bg-charcoal dark:hover:bg-gray-800"
               onClick={() => setShowDeveloperModal(true)}
             >
-              {t("Developed By")}
+              {t("CLICK HERE TO KNOW ABOUT DEVELOPER")}
             </Button>
           </div>
           
