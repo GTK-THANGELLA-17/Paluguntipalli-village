@@ -22,12 +22,12 @@ const DeveloperModal = ({ isOpen, onClose }: DeveloperModalProps) => {
     { icon: <Twitter className="h-4 w-4 text-blue-400" />, label: "Twitter", url: "https://twitter.com/g_thangella" },
     { icon: <Instagram className="h-4 w-4 text-pink-500" />, label: "Instagram", url: "https://www.instagram.com/g_thangella_k?igsh=aWczdnVtaDR1N280" },
     { icon: <Mail className="h-4 w-4 text-red-500" />, label: "Email", url: "mailto:imgtk17@gmail.com" },
-    { icon: <Globe className="h-4 w-4 text-green-500" />, label: "Portfolio", url: "https://thangella-creaftech-solutions.vercel.app/" }
+    { icon: <Globe className="h-4 w-4 text-green-500" />, label: "Portfolio", url: "https://thangella-creaftech-solutions.vercel.app/" },
   ];
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-3xl bg-gradient-to-br from-gray-900 to-gray-800 text-white transform perspective-1000 rounded-2xl overflow-hidden p-6">
+      <DialogContent className="w-full max-w-[95vw] sm:max-w-3xl bg-gradient-to-br from-gray-900 to-gray-800 text-white rounded-2xl overflow-hidden p-4 sm:p-6">
         <DialogHeader>
           <DialogTitle className="text-xl font-playfair text-center bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-300 animate__animated animate__zoomIn">
             Meet the Developer
@@ -36,7 +36,7 @@ const DeveloperModal = ({ isOpen, onClose }: DeveloperModalProps) => {
 
         <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6 pt-4">
           {/* Avatar & Info */}
-          <div className="flex flex-col items-center sm:items-start text-center sm:text-left">
+          <div className="flex flex-col items-center sm:items-start text-center sm:text-left w-full sm:w-auto">
             <Avatar className="h-24 w-24 border border-white mb-3 hover:scale-105 transition-transform">
               <AvatarImage src="/GTK.JPG" alt="G. Thangella" />
               <AvatarFallback>GT</AvatarFallback>
@@ -51,8 +51,19 @@ const DeveloperModal = ({ isOpen, onClose }: DeveloperModalProps) => {
             </p>
             <div className="flex gap-2 mt-3 flex-wrap justify-center sm:justify-start">
               {developerLinks.map((link, i) => (
-                <Button key={i} variant="ghost" size="icon" asChild className="rounded-full hover:bg-white/10">
-                  <a href={link.url} target="_blank" rel="noopener noreferrer" aria-label={link.label}>
+                <Button
+                  key={i}
+                  variant="ghost"
+                  size="icon"
+                  asChild
+                  className="rounded-full hover:bg-white/10"
+                >
+                  <a
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={link.label}
+                  >
                     {link.icon}
                   </a>
                 </Button>
@@ -61,7 +72,7 @@ const DeveloperModal = ({ isOpen, onClose }: DeveloperModalProps) => {
           </div>
 
           {/* Description */}
-          <div className="space-y-4 text-sm w-full sm:w-[60%]">
+          <div className="space-y-4 text-sm w-full">
             <p className="text-gray-300">
               I created this website to showcase my beautiful village, Paluguntipalli, to the world. As a passionate developer, I strive to combine my love for technology and my heritage to bring people closer to the rich culture of my village. I believe in the power of technology to connect people and share meaningful stories. I build impactful digital tools to simplify complex systems. The Lifespan Estimator reflects my passion for health-tech innovation and accessible design.
             </p>
@@ -85,7 +96,9 @@ const DeveloperModal = ({ isOpen, onClose }: DeveloperModalProps) => {
         <Separator className="my-4 bg-gray-700" />
 
         <DialogFooter className="flex flex-col sm:flex-row gap-2 justify-end">
-          <Button variant="destructive" onClick={() => onClose(false)}>Close</Button>
+          <Button variant="destructive" onClick={() => onClose(false)}>
+            Close
+          </Button>
           <Button variant="default" asChild>
             <a href="mailto:imgtk17@gmail.com" target="_blank" rel="noopener noreferrer">
               Get in Touch
