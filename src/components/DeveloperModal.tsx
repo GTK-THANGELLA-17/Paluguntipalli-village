@@ -1,92 +1,97 @@
 import {
   Dialog,
   DialogContent,
+  DialogFooter,
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { Mail, Instagram, Linkedin } from "lucide-react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
+import { Github, Linkedin, Mail, Globe, Twitter, Instagram } from "lucide-react";
 
 interface DeveloperModalProps {
   isOpen: boolean;
-  onClose: () => void;
+  onClose: (open: boolean) => void;
 }
 
 const DeveloperModal = ({ isOpen, onClose }: DeveloperModalProps) => {
+  const developerLinks = [
+    { icon: <Github className="h-4 w-4" />, label: "GitHub", url: "https://github.com/GTK-THANGELLA-17" },
+    { icon: <Linkedin className="h-4 w-4 text-blue-600" />, label: "LinkedIn", url: "https://www.linkedin.com/in/gthangella/" },
+    { icon: <Twitter className="h-4 w-4 text-blue-400" />, label: "Twitter", url: "https://twitter.com/g_thangella" },
+    { icon: <Instagram className="h-4 w-4 text-pink-500" />, label: "Instagram", url: "https://www.instagram.com/g_thangella_k?igsh=aWczdnVtaDR1N280" },
+    { icon: <Mail className="h-4 w-4 text-red-500" />, label: "Email", url: "mailto:imgtk17@gmail.com" },
+    { icon: <Globe className="h-4 w-4 text-green-500" />, label: "Portfolio", url: "https://thangella-creaftech-solutions.vercel.app/" }
+  ];
+
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-4xl bg-gradient-to-br from-gray-900 to-gray-800 text-white transform perspective-1000 rounded-2xl overflow-hidden p-6">
+      <DialogContent className="max-w-3xl bg-gradient-to-br from-gray-900 to-gray-800 text-white transform perspective-1000 rounded-2xl overflow-hidden p-6">
         <DialogHeader>
           <DialogTitle className="text-xl font-playfair text-center bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-300 animate__animated animate__zoomIn">
-            Developed By
+            Meet the Developer
           </DialogTitle>
         </DialogHeader>
 
-        {/* Scrollable Content */}
-        <div className="flex flex-col md:flex-row items-center justify-between w-full space-y-8 md:space-y-0 md:space-x-8 overflow-y-auto max-h-[70vh]">
-          {/* Profile Picture Section */}
-          <div className="w-64 h-64 md:w-80 md:h-80 rounded-lg overflow-hidden border-4 border-heritage relative transform hover:scale-105 transition-transform duration-300 shadow-xl flex-shrink-0">
-            <img
-              src="/gtk 2.jpg"
-              alt="Developer"
-              className="w-full h-full object-cover transform hover:rotate-6 transition-transform"
-            />
+        <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6 pt-4">
+          {/* Avatar & Info */}
+          <div className="flex flex-col items-center sm:items-start text-center sm:text-left">
+            <Avatar className="h-24 w-24 border border-white mb-3 hover:scale-105 transition-transform">
+              <AvatarImage src="/GTK.JPG" alt="G. Thangella" />
+              <AvatarFallback>GT</AvatarFallback>
+            </Avatar>
+            <h3 className="text-lg font-semibold">GADIDAMALLA THANGELLA</h3>
+            <p className="text-xs text-gray-400">thangellagadidamalla@gmail.com</p>
+            <p className="text-xs text-gray-400 mt-1 whitespace-pre-line leading-snug">
+              💼 Entrepreneur{"\n"}
+              🧠 Tech Explorer{"\n"}
+              🎨 Creative Thinker{"\n"}
+              🔭 Visionary
+            </p>
+            <div className="flex gap-2 mt-3 flex-wrap justify-center sm:justify-start">
+              {developerLinks.map((link, i) => (
+                <Button key={i} variant="ghost" size="icon" asChild className="rounded-full hover:bg-white/10">
+                  <a href={link.url} target="_blank" rel="noopener noreferrer" aria-label={link.label}>
+                    {link.icon}
+                  </a>
+                </Button>
+              ))}
+            </div>
           </div>
 
-          {/* Developer Info Section */}
-          <div className="flex flex-col space-y-4 w-full max-w-md">
-            <h3 className="text-lg font-semibold bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-300 text-center">
-              GADIDAMALLA THANGELLA
-            </h3>
-
-            {/* Developer Description */}
-            <p className="text-sm text-center text-gray-300">
-              I created this website to showcase my beautiful village, Paluguntipalli, to the world. As a passionate developer, I strive to combine my love for technology and my heritage to bring people closer to the rich culture of my village. I believe in the power of technology to connect people and share meaningful stories.
+          {/* Description */}
+          <div className="space-y-4 text-sm w-full sm:w-[60%]">
+            <p className="text-gray-300">
+              I created this website to showcase my beautiful village, Paluguntipalli, to the world. As a passionate developer, I strive to combine my love for technology and my heritage to bring people closer to the rich culture of my village. I believe in the power of technology to connect people and share meaningful stories. I build impactful digital tools to simplify complex systems. The Lifespan Estimator reflects my passion for health-tech innovation and accessible design.
             </p>
 
-            {/* Contact Links */}
-            <div className="w-full space-y-4">
-              <a
-                href="mailto:thangellagadidamalla@gmail.com"
-                className="flex items-center gap-3 p-3 rounded-lg bg-black/30 hover:bg-black/50 transition-colors transform hover:translate-x-1"
-              >
-                <Mail className="text-heritage" size={18} />
-                <span className="text-sm">thangellagadidamalla@gmail.com</span>
-              </a>
-
-              {/* Instagram Link */}
-              <a
-                href="https://www.instagram.com/g_thangella_k/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-3 p-3 rounded-lg bg-black/30 hover:bg-black/50 transition-colors transform hover:translate-x-1"
-              >
-                <Instagram className="text-heritage" size={18} />
-                <span className="text-sm">@g_thangella_k</span>
-              </a>
-
-              {/* LinkedIn Link */}
-              <a
-                href="https://www.linkedin.com/in/gthangella/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-3 p-3 rounded-lg bg-black/30 hover:bg-black/50 transition-colors transform hover:translate-x-1"
-              >
-                <Linkedin className="text-heritage" size={18} />
-                <span className="text-sm">LinkedIn</span>
-              </a>
+            <div>
+              <h4 className="font-semibold text-white">Tech Stack</h4>
+              <p className="text-gray-400">
+                React, TypeScript, TailwindCSS, shadcn/ui, Recharts, Git, Vercel
+              </p>
             </div>
 
-            {/* Cancel Button */}
-            <div className="w-full text-center">
-              <button
-                onClick={onClose}
-                className="bg-red-500 text-white p-3 rounded-lg hover:bg-red-600 transition-colors transform hover:scale-105"
-              >
-                Cancel
-              </button>
+            <div>
+              <h4 className="font-semibold text-white">Mission</h4>
+              <p className="text-gray-400">
+                I’m driven to create meaningful digital products that solve real-world problems through impactful design and technology.
+              </p>
             </div>
           </div>
         </div>
+
+        <Separator className="my-4 bg-gray-700" />
+
+        <DialogFooter className="flex flex-col sm:flex-row gap-2 justify-end">
+          <Button variant="destructive" onClick={() => onClose(false)}>Close</Button>
+          <Button variant="default" asChild>
+            <a href="mailto:imgtk17@gmail.com" target="_blank" rel="noopener noreferrer">
+              Get in Touch
+            </a>
+          </Button>
+        </DialogFooter>
       </DialogContent>
     </Dialog>
   );

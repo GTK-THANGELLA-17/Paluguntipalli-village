@@ -15,7 +15,7 @@ const eventsData = [
       "Join us in keeping the village clean and green by participating in regular cleaning drives and planting trees.",
     time: "All-DAY ",
     location: "Village Green",
-    image: "/village 2.jpg"
+    image: "/VILLAGE START.jpg"
   },
   {
     id: 2,
@@ -24,7 +24,7 @@ const eventsData = [
       "As the summer temperatures rise, stay hydrated by drinking enough water throughout the day and maintaining your health.",
     time: "All-Day ",
     location: "Across the Village",
-    image: "/village 3.jpg"
+    image: "/Village.jpg"
   }
 ];
 

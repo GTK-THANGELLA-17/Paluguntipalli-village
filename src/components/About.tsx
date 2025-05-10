@@ -4,6 +4,22 @@ import { useEffect, useState } from "react";
 
 const carouselImages = [
   {
+    src: "/BUS STAND.jpg",
+    alt: "Village Image 1"
+  },
+  {
+    src: "/BUS STAND ROAD.jpg",
+    alt: "Village Image 2"
+  },
+  {
+    src: "/Hanuman Statue.jpg",
+    alt: "Water surrounded by trees"
+  },
+  {
+    src: "/VILLAGE START.jpg",
+    alt: "Water surrounded by trees"
+  },
+  {
     src: "/Temple .jpg",
     alt: "Village Image 1"
   },
@@ -19,10 +35,7 @@ const carouselImages = [
     src: "/Kasinayana Temple.jpg",
     alt: "River View"
   },
-  {
-    src: "/Hanuman Statue.jpg",
-    alt: "Water surrounded by trees"
-  }
+  
 ];
 
 const About = () => {

@@ -19,11 +19,16 @@ interface GalleryItem {
 
 // Sample gallery data - replace with your actual images
 const villageGallery: GalleryItem[] = [
+  { type: 'image', src: "/BUS STAND.jpg", alt: "Village Image 1" },
+  { type: 'image', src: "/BUS STAND ROAD.jpg", alt: "Village Image 1" },
+  { type: 'image', src: "/Hanuman Statue.jpg", alt: "Water surrounded by trees" },
+  { type: 'image', src: "/VILLAGE START.jpg", alt: "Water surrounded by trees" },
   { type: 'image', src: "/Temple .jpg", alt: "Village Image 1" },
   { type: 'image', src: "/School.jpg", alt: "Village Image 2" },
   { type: 'image', src: "/Peerla chavidi 1.jpg", alt: "Village Image 3" },
   { type: 'image', src: "/Kasinayana Temple.jpg", alt: "River View" },
-  { type: 'image', src: "/Hanuman Statue.jpg", alt: "Water surrounded by trees" }
+  
+
 ];
 
 const festivalGallery: GalleryItem[] = [
