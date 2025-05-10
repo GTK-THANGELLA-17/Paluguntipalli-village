@@ -11,13 +11,13 @@ interface Announcement {
 const announcements: Announcement[] = [
   {
     title: "Peerla Panduga",
-    date: "July 2024",
+    date: "July 2025",
     description: "Annual celebration with cultural performances and traditional rituals.",
     important: true
   },
   {
     title: "Pedda Sarigesu",
-    date: "July 17, 2024",
+    date: "July 17, 2025",
     description: "Special ceremony at the village temple with community gathering.",
     important: true
   }
