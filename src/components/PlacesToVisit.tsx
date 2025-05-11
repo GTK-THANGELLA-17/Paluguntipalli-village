@@ -10,7 +10,7 @@ import { useIsMobile } from "@/hooks/use-mobile";
 // Village attractions with proper Google Maps links
 const villageAttractions = [
   {
-    name: "Sri Kasinayana Temple",
+    name: "Sri Peddaya Swamy Temple",
     description: "Ancient temple with historical significance and beautiful architecture",
     link: "https://www.google.com/maps/place/Paluguntipalli,+Andhra+Pradesh+523368/@15.4795123,78.9627302,42m/data=!3m1!1e3!4m6!3m5!1s0x3bb4e1b7fe8a6969:0x6daeb87da9e27400!8m2!3d15.4808278!4d78.962409!16s%2Fm%2F051xw63?entry=ttu&g_ep=EgoyMDI1MDUwMy4wIKXMDSoASAFQAw%3D%3D",
     image: "/Kasinayana Temple.jpg",
@@ -38,7 +38,7 @@ const villageAttractions = [
     distance: "In village"
   },
 {
-    name: "Water Tank",
+    name: "PaalaRathi  Gundu , Water Tank",
     description: "Historic water reservoir that has served the village for generations",
     link: "https://www.google.com/maps/place/Paluguntipalli,+Andhra+Pradesh+523368/@15.4815925,78.9622207,158m/data=!3m1!1e3!4m6!3m5!1s0x3bb4e1b7fe8a6969:0x6daeb87da9e27400!8m2!3d15.4808278!4d78.962409!16s%2Fm%2F051xw63?entry=ttu&g_ep=EgoyMDI1MDUwMy4wIKXMDSoASAFQAw%3D%3D",
     image: "/Water tank .jpg",
