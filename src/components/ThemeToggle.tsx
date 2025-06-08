@@ -38,26 +38,26 @@ const ThemeToggle = ({ mobile = false }: ThemeToggleProps) => {
     console.log("Current theme:", theme);
   }, [theme]);
 
-  const buttonSize = mobile ? 'h-7 w-7 min-w-7' : '';
-  const iconSize = mobile ? 16 : 20;
+  const buttonSize = mobile ? 'h-6 w-6 min-w-6' : 'h-10 w-10';
+  const iconSize = mobile ? 14 : 20;
 
   return (
     <div className="relative">
-      {/* Light/dark effect overlay */}
+      {/* Light/dark effect overlay with improved mobile sizing */}
       {showRay && (
         <motion.div
           className={`absolute -z-10 rounded-full ${
             theme === "dark" 
-              ? "bg-gradient-radial from-blue-800/30 to-transparent" 
-              : "bg-gradient-radial from-yellow-300/30 to-transparent"
+              ? "bg-gradient-radial from-blue-800/40 to-transparent" 
+              : "bg-gradient-radial from-yellow-300/40 to-transparent"
           }`}
           initial={{ opacity: 0, scale: 0.2 }}
-          animate={{ opacity: 1, scale: 2.5 }}
-          exit={{ opacity: 0, scale: 3 }}
-          transition={{ duration: 0.7 }}
+          animate={{ opacity: 1, scale: mobile ? 2 : 2.5 }}
+          exit={{ opacity: 0, scale: mobile ? 2.5 : 3 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
           style={{
-            width: "100%",
-            height: "100%",
+            width: mobile ? "150%" : "200%",
+            height: mobile ? "150%" : "200%",
             top: "50%",
             left: "50%",
             transform: "translate(-50%, -50%)"
@@ -74,17 +74,17 @@ const ThemeToggle = ({ mobile = false }: ThemeToggleProps) => {
           theme === 'dark' 
             ? 'bg-[#333333] text-white hover:bg-[#444444]' 
             : 'bg-[#B5C7EB]/30 text-[#000000] hover:bg-[#B5C7EB]/50'
-        }`}
+        } ${mobile ? 'p-1' : 'p-2'}`}
         aria-label="Toggle theme"
       >
         <AnimatePresence mode="wait">
           <motion.div
             key={theme}
             initial={{ 
-              scale: 0.5, 
+              scale: 0.3, 
               opacity: 0, 
               rotate: theme === 'dark' ? -180 : 0,
-              y: theme === 'dark' ? 10 : -10
+              y: theme === 'dark' ? 8 : -8
             }}
             animate={{ 
               scale: 1, 
@@ -93,30 +93,69 @@ const ThemeToggle = ({ mobile = false }: ThemeToggleProps) => {
               y: 0
             }}
             exit={{ 
-              scale: 0, 
+              scale: 0.2, 
               opacity: 0,
               rotate: theme === 'dark' ? 0 : 180,
-              y: theme === 'dark' ? -10 : 10
+              y: theme === 'dark' ? -8 : 8
             }}
             transition={{ 
-              duration: 0.7, 
+              duration: 0.8, 
               type: "spring", 
-              stiffness: 200,
-              damping: 10 
+              stiffness: 150,
+              damping: 12 
             }}
-            className="absolute"
+            className="absolute flex items-center justify-center"
           >
             {theme === 'dark' ? (
-              <Sun size={iconSize} className="text-yellow-300 animate-pulse">
-                <animate attributeName="opacity" values="0.4;1;0.4" dur="2s" repeatCount="indefinite" />
-              </Sun>
+              <motion.div
+                animate={{
+                  rotate: [0, 15, -15, 0],
+                  scale: [1, 1.1, 1]
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  repeatDelay: 3
+                }}
+              >
+                <Sun 
+                  size={iconSize} 
+                  className="text-yellow-300 filter drop-shadow-md"
+                />
+              </motion.div>
             ) : (
-              <Moon size={iconSize} className="text-blue-800">
-                <animate attributeName="opacity" values="0.7;1;0.7" dur="3s" repeatCount="indefinite" />
-              </Moon>
+              <motion.div
+                animate={{
+                  rotate: [0, -5, 5, 0],
+                  scale: [1, 1.05, 1]
+                }}
+                transition={{
+                  duration: 4,
+                  repeat: Infinity,
+                  repeatDelay: 2
+                }}
+              >
+                <Moon 
+                  size={iconSize} 
+                  className="text-blue-800 filter drop-shadow-sm"
+                />
+              </motion.div>
             )}
           </motion.div>
         </AnimatePresence>
+        
+        {/* Subtle glow effect for mobile */}
+        {mobile && (
+          <motion.div
+            className={`absolute inset-0 rounded-full ${
+              theme === 'dark' 
+                ? 'bg-yellow-300/10' 
+                : 'bg-blue-800/10'
+            }`}
+            animate={{ opacity: [0, 0.5, 0] }}
+            transition={{ duration: 3, repeat: Infinity }}
+          />
+        )}
       </Button>
     </div>
   );

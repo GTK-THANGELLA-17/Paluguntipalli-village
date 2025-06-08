@@ -9,6 +9,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Image, Video } from "lucide-react";
+import OptimizedImage from "./OptimizedImage";
 
 interface GalleryItem {
   type: 'image' | 'video';
@@ -65,108 +66,84 @@ const festivalVideos: GalleryItem[] = [
 const Gallery = () => {
   const [selectedItem, setSelectedItem] = useState<GalleryItem | null>(null);
   
+  const renderGalleryItem = (item: GalleryItem, index: number) => {
+    return (
+      <div 
+        key={index}
+        className="gallery-item group cursor-pointer relative"
+        data-aos="zoom-in"
+        data-aos-delay={100 * index}
+        onClick={() => setSelectedItem(item)}
+      >
+        <div className="aspect-[4/3] overflow-hidden rounded-lg">
+          {item.type === 'video' ? (
+            <>
+              <OptimizedImage
+                src={item.thumbnail || item.src}
+                alt={item.alt}
+                className="w-full h-full"
+              />
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center rounded-full bg-heritage bg-opacity-80 text-white">
+                  <Video size={24} className="sm:w-8 sm:h-8" />
+                </div>
+              </div>
+            </>
+          ) : (
+            <OptimizedImage
+              src={item.src}
+              alt={item.alt}
+              className="w-full h-full transition-transform duration-700 group-hover:scale-110"
+            />
+          )}
+        </div>
+        
+        <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center rounded-lg">
+          <div className="text-white opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 text-center px-4">
+            {item.type === 'image' ? <Image size={20} className="mx-auto mb-2 sm:w-6 sm:h-6" /> : <Video size={20} className="mx-auto mb-2 sm:w-6 sm:h-6" />}
+            <p className="font-medium text-sm sm:text-base">{item.alt}</p>
+          </div>
+        </div>
+      </div>
+    );
+  };
+  
   return (
-    <section id="gallery" className="py-20 bg-white dark:bg-[#252525]">
+    <section id="gallery" className="py-12 sm:py-16 lg:py-20 bg-white dark:bg-[#252525]">
       <div className="container mx-auto px-4">
         <h2 className="section-title text-[#000000] dark:text-white" data-aos="fade-up">Gallery</h2>
         
         <Tabs defaultValue="village" className="w-full" data-aos="fade-up" data-aos-delay="100">
-          <TabsList className="grid w-full max-w-md mx-auto grid-cols-3 mb-12 bg-gray-100 dark:bg-[#333333]">
-            <TabsTrigger value="village" className="text-sm md:text-base text-[#000000] dark:text-white data-[state=active]:bg-heritage data-[state=active]:text-white">
-              <Image size={18} className="mr-2 hidden md:inline" />
-              Village Gallery
+          <TabsList className="grid w-full max-w-md mx-auto grid-cols-3 mb-8 sm:mb-12 bg-gray-100 dark:bg-[#333333] h-auto">
+            <TabsTrigger value="village" className="text-xs sm:text-sm md:text-base text-[#000000] dark:text-white data-[state=active]:bg-heritage data-[state=active]:text-white py-2 sm:py-3">
+              <Image size={16} className="mr-1 sm:mr-2 hidden sm:inline w-4 h-4 sm:w-[18px] sm:h-[18px]" />
+              <span className="truncate">Village Gallery</span>
             </TabsTrigger>
-            <TabsTrigger value="festival" className="text-sm md:text-base text-[#000000] dark:text-white data-[state=active]:bg-heritage data-[state=active]:text-white">
-              <Image size={18} className="mr-2 hidden md:inline" />
-              Festival Gallery
+            <TabsTrigger value="festival" className="text-xs sm:text-sm md:text-base text-[#000000] dark:text-white data-[state=active]:bg-heritage data-[state=active]:text-white py-2 sm:py-3">
+              <Image size={16} className="mr-1 sm:mr-2 hidden sm:inline w-4 h-4 sm:w-[18px] sm:h-[18px]" />
+              <span className="truncate">Festival Gallery</span>
             </TabsTrigger>
-            <TabsTrigger value="videos" className="text-sm md:text-base text-[#000000] dark:text-white data-[state=active]:bg-heritage data-[state=active]:text-white">
-              <Video size={18} className="mr-2 hidden md:inline" />
-              Festival Videos
+            <TabsTrigger value="videos" className="text-xs sm:text-sm md:text-base text-[#000000] dark:text-white data-[state=active]:bg-heritage data-[state=active]:text-white py-2 sm:py-3">
+              <Video size={16} className="mr-1 sm:mr-2 hidden sm:inline w-4 h-4 sm:w-[18px] sm:h-[18px]" />
+              <span className="truncate">Festival Videos</span>
             </TabsTrigger>
           </TabsList>
           
           <TabsContent value="village" id="village-gallery">
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-              {villageGallery.map((item, index) => (
-                <div 
-                  key={index}
-                  className="gallery-item group cursor-pointer"
-                  data-aos="zoom-in"
-                  data-aos-delay={100 * index}
-                  onClick={() => setSelectedItem(item)}
-                >
-                  <img 
-                    src={item.src} 
-                    alt={item.alt}
-                    className="aspect-[4/3] object-cover rounded-lg"
-                  />
-                  <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
-                    <div className="text-white opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
-                      <Image size={24} className="mx-auto" />
-                      <p className="font-medium mt-2">{item.alt}</p>
-                    </div>
-                  </div>
-                </div>
-              ))}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+              {villageGallery.map((item, index) => renderGalleryItem(item, index))}
             </div>
           </TabsContent>
           
           <TabsContent value="festival">
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-              {festivalGallery.map((item, index) => (
-                <div 
-                  key={index}
-                  className="gallery-item group cursor-pointer"
-                  data-aos="zoom-in"
-                  data-aos-delay={100 * index}
-                  onClick={() => setSelectedItem(item)}
-                >
-                  <img 
-                    src={item.src} 
-                    alt={item.alt}
-                    className="aspect-[4/3] object-cover rounded-lg"
-                  />
-                  <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
-                    <div className="text-white opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
-                      <Image size={24} className="mx-auto" />
-                      <p className="font-medium mt-2">{item.alt}</p>
-                    </div>
-                  </div>
-                </div>
-              ))}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+              {festivalGallery.map((item, index) => renderGalleryItem(item, index))}
             </div>
           </TabsContent>
           
           <TabsContent value="videos">
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-              {festivalVideos.map((item, index) => (
-                <div 
-                  key={index}
-                  className="gallery-item group cursor-pointer"
-                  data-aos="zoom-in"
-                  data-aos-delay={100 * index}
-                  onClick={() => setSelectedItem(item)}
-                >
-                  <div className="aspect-[4/3] relative overflow-hidden rounded-lg">
-                    <img 
-                      src={item.thumbnail} 
-                      alt={item.alt}
-                      className="w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="w-16 h-16 flex items-center justify-center rounded-full bg-heritage bg-opacity-80 text-white">
-                        <Video size={32} />
-                      </div>
-                    </div>
-                    <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
-                      <div className="text-white opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
-                        <p className="font-medium mt-2">{item.alt}</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+              {festivalVideos.map((item, index) => renderGalleryItem(item, index))}
             </div>
           </TabsContent>
         </Tabs>
@@ -174,9 +151,9 @@ const Gallery = () => {
         {/* Media Viewer Dialog */}
         <Dialog open={!!selectedItem} onOpenChange={() => setSelectedItem(null)}>
           <DialogContent className="max-w-4xl p-0 bg-white dark:bg-[#2a2a2a] overflow-hidden">
-            <DialogHeader className="p-6">
-              <DialogTitle className="text-[#000000] dark:text-white">{selectedItem?.alt}</DialogTitle>
-              <DialogDescription className="text-gray-700 dark:text-gray-300">
+            <DialogHeader className="p-4 sm:p-6">
+              <DialogTitle className="text-[#000000] dark:text-white text-lg sm:text-xl">{selectedItem?.alt}</DialogTitle>
+              <DialogDescription className="text-gray-700 dark:text-gray-300 text-sm sm:text-base">
                 Paluguntipalli Heritage Collection
               </DialogDescription>
             </DialogHeader>

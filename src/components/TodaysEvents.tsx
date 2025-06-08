@@ -6,7 +6,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { format } from "date-fns";
 
 // Sample events data - in a real application, this would come from an API or CMS
-// New events data with just the 2 events you mentioned
 const eventsData = [
   {
     id: 1,
@@ -27,6 +26,7 @@ const eventsData = [
     image: "/Village.jpg"
   }
 ];
+
 
 const TodaysEvents = () => {
   const [currentDate, setCurrentDate] = useState(new Date());

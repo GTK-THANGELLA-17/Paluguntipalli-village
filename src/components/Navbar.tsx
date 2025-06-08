@@ -227,11 +227,6 @@ const Navbar = ({ isAudioPlaying, audioRef, setIsAudioPlaying }) => {
           </DropdownMenu>
         </nav>
 
- {/* Mobile theme toggle - smaller size */}
- <div className="sm:hidden">
-            <ThemeToggle mobile={true} />
-          </div>
-          
         {/* Mobile Nav - Rearranged */}
         <div className="lg:hidden flex items-center gap-2">
           {/* Mobile audio control with improved icon and animation - moved to first position */}
@@ -257,7 +252,10 @@ const Navbar = ({ isAudioPlaying, audioRef, setIsAudioPlaying }) => {
             </Button>
           </motion.div>
           
-         
+          {/* Mobile theme toggle - smaller size */}
+          <div className="sm:hidden">
+            <ThemeToggle mobile={true} />
+          </div>
           
           {/* Mobile language selection */}
           <DropdownMenu>

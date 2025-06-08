@@ -14,6 +14,7 @@ import PlacesToVisit from "@/components/PlacesToVisit";
 import LoadingScreen from "@/components/LoadingScreen";
 import ContactForm from "@/components/ContactForm";
 import TodaysEvents from "@/components/TodaysEvents";
+import WhyUseApp from "@/components/WhyUseApp";
 import { useTranslation } from "react-i18next";
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -76,9 +77,9 @@ const Index = () => {
         if (prev >= 100) {
           return 0;
         }
-        return prev + 1;
+        return prev + 2; // Faster animation
       });
-    }, 600);
+    }, 100); // More frequent updates for smoother animation
     
     return () => clearInterval(progressInterval);
   }, []);
@@ -86,7 +87,7 @@ const Index = () => {
   // Audio initialization and scroll handler
   useEffect(() => {
     // Create audio element
-    const audio = new Audio('/Bgm Sounds.mp3');
+    const audio = new Audio('/assets/ambient-nature.mp3');
     audio.loop = true;
     audio.volume = 0.5; // Set initial volume to 50%
     audioRef.current = audio;
@@ -266,15 +267,22 @@ const Index = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="fixed top-16 left-0 right-0 z-40 flex justify-center items-center py-2 bg-gradient-to-r from-white/80 via-heritage/20 to-white/80 dark:from-[#252525]/80 dark:via-slate/30 dark:to-[#252525]/80 backdrop-blur-sm shadow-sm"
+            className="fixed top-16 left-0 right-0 z-40 flex justify-center items-center py-2 sm:py-3 bg-gradient-to-r from-white/90 via-heritage/30 to-white/90 dark:from-[#252525]/90 dark:via-slate/40 dark:to-[#252525]/90 backdrop-blur-md shadow-lg border-b border-heritage/20 dark:border-white/20"
           >
-            <div className="flex flex-col items-center sm:flex-row sm:gap-3 relative">
-              {/* Date display with pulse effect */}
+            <div className="flex flex-col items-center sm:flex-row sm:gap-4 relative overflow-hidden rounded-full px-4 sm:px-6 py-2 bg-white/50 dark:bg-[#252525]/50 backdrop-blur-sm border border-heritage/30 dark:border-white/30">
+              {/* Animated background shimmer */}
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-transparent via-heritage/20 dark:via-white/10 to-transparent"
+                animate={{ x: ['-100%', '100%'] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+              />
+              
+              {/* Date display with enhanced animations */}
               <motion.p 
-                className="text-[#000000] dark:text-white text-sm font-medium"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.2 }}
+                className="text-[#000000] dark:text-white text-xs sm:text-sm font-medium relative z-10"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
               >
                 {currentDateTime.toLocaleDateString('en-US', { 
                   weekday: 'short', 
@@ -284,40 +292,71 @@ const Index = () => {
                 })}
               </motion.p>
               
-              {/* Time display with pulse effect */}
+              {/* Separator with pulse animation */}
+              <motion.div 
+                className="hidden sm:block w-1 h-1 bg-heritage dark:bg-white rounded-full"
+                animate={{ scale: [1, 1.5, 1] }}
+                transition={{ duration: 2, repeat: Infinity }}
+              />
+              
+              {/* Time display with enhanced pulse effect */}
               <motion.p 
-                className="text-[#000000] dark:text-white font-medium text-sm flex items-center"
+                className="text-[#000000] dark:text-white font-medium text-xs sm:text-sm flex items-center relative z-10"
                 animate={{ 
-                  scale: [1, 1.03, 1],
-                  transition: { 
-                    repeat: Infinity, 
-                    repeatDelay: 5,
-                    duration: 1
-                  }
+                  scale: [1, 1.05, 1],
+                  filter: ["brightness(1)", "brightness(1.1)", "brightness(1)"]
+                }}
+                transition={{ 
+                  repeat: Infinity, 
+                  repeatDelay: 3,
+                  duration: 1.5,
+                  ease: "easeInOut"
                 }}
               >
-                {currentDateTime.toLocaleTimeString('en-US', { 
-                  hour: '2-digit', 
-                  minute: '2-digit', 
-                  second: '2-digit' 
-                })}
+                <motion.span
+                  animate={{ opacity: [1, 0.5, 1] }}
+                  transition={{ duration: 1, repeat: Infinity }}
+                >
+                  {currentDateTime.toLocaleTimeString('en-US', { 
+                    hour: '2-digit', 
+                    minute: '2-digit', 
+                    second: '2-digit' 
+                  })}
+                </motion.span>
                 {weatherTemp !== null && (
                   <motion.span 
-                    className="ml-2 bg-blue-100 dark:bg-blue-900 px-1.5 py-0.5 rounded text-blue-800 dark:text-blue-100"
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.5 }}
+                    className="ml-2 bg-blue-100 dark:bg-blue-900/50 px-2 py-1 rounded-full text-blue-800 dark:text-blue-100 text-xs backdrop-blur-sm border border-blue-200 dark:border-blue-700"
+                    initial={{ opacity: 0, scale: 0.8, rotateY: -90 }}
+                    animate={{ opacity: 1, scale: 1, rotateY: 0 }}
+                    transition={{ delay: 0.8, type: "spring", stiffness: 150 }}
+                    whileHover={{ scale: 1.1 }}
                   >
                     {weatherTemp}°C
                   </motion.span>
                 )}
               </motion.p>
               
-              {/* Animated progress bar */}
-              <div className="absolute -bottom-1 left-0 w-full h-0.5 bg-gray-200 dark:bg-gray-700 overflow-hidden">
+              {/* Enhanced animated progress bar with rainbow effect */}
+              <div className="absolute -bottom-0.5 left-0 w-full h-1 bg-gray-200 dark:bg-gray-700 overflow-hidden rounded-full">
                 <motion.div 
-                  className="h-full bg-gradient-to-r from-heritage via-blue-500 to-heritage"
+                  className="h-full bg-gradient-to-r from-heritage via-blue-500 via-purple-500 to-heritage rounded-full"
                   style={{ width: `${progress}%` }}
+                  animate={{
+                    background: [
+                      "linear-gradient(90deg, #B5C7EB 0%, #3B82F6 50%, #B5C7EB 100%)",
+                      "linear-gradient(90deg, #3B82F6 0%, #8B5CF6 50%, #3B82F6 100%)",
+                      "linear-gradient(90deg, #8B5CF6 0%, #B5C7EB 50%, #8B5CF6 100%)",
+                      "linear-gradient(90deg, #B5C7EB 0%, #3B82F6 50%, #B5C7EB 100%)"
+                    ]
+                  }}
+                  transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+                />
+                {/* Glowing effect */}
+                <motion.div
+                  className="absolute top-0 left-0 h-full w-8 bg-white/50 blur-sm"
+                  style={{ left: `${progress - 4}%` }}
+                  animate={{ opacity: [0.5, 1, 0.5] }}
+                  transition={{ duration: 1, repeat: Infinity }}
                 />
               </div>
             </div>
@@ -327,6 +366,7 @@ const Index = () => {
       
       <Hero />
       <About />
+      <WhyUseApp />
       <Gallery />
       <TodaysEvents />
       <Events />
@@ -336,7 +376,7 @@ const Index = () => {
       <Members />
       <Announcements />
       
-      <section id="contact" className="py-16 bg-white dark:bg-[#252525]">
+      <section id="contact" className="py-12 sm:py-16 bg-white dark:bg-[#252525]">
         <div className="container mx-auto px-4">
           <h2 className="section-title text-[#000000] dark:text-white">Contact Us</h2>
           <div className="max-w-3xl mx-auto">

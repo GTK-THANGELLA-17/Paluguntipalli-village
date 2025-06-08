@@ -23,7 +23,7 @@ const Footer = () => {
               className="bg-black text-white hover:bg-gray-800 dark:bg-charcoal dark:hover:bg-gray-800"
               onClick={() => setShowDeveloperModal(true)}
             >
-              {t("CLICK HERE TO KNOW ABOUT DEVELOPER")}
+              {t("Developed By")}
             </Button>
           </div>
           
@@ -91,8 +91,8 @@ const Footer = () => {
       </div>
       
       <DeveloperModal 
-        isOpen={showDeveloperModal}
-        onClose={() => setShowDeveloperModal(false)}
+        open={showDeveloperModal}
+        onOpenChange={setShowDeveloperModal}
       />
     </footer>
   );
