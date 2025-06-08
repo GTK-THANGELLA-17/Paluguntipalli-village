@@ -87,7 +87,7 @@ const Index = () => {
   // Audio initialization and scroll handler
   useEffect(() => {
     // Create audio element
-    const audio = new Audio('/assets/ambient-nature.mp3');
+    const audio = new Audio('/Bgm Sounds.mp3');
     audio.loop = true;
     audio.volume = 0.5; // Set initial volume to 50%
     audioRef.current = audio;
