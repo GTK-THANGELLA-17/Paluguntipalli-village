@@ -27,7 +27,6 @@ const eventsData = [
   }
 ];
 
-
 const TodaysEvents = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [activeEventIndex, setActiveEventIndex] = useState(0);

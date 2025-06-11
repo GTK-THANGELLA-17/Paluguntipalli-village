@@ -42,7 +42,7 @@ const WhyUseApp = () => {
             className="flex items-center justify-center mb-4"
           >
             <Star className="text-heritage dark:text-white mr-2" size={32} />
-            <h2 className="section-title text-[#000000] dark:text-white mb-0">Why To Use Our WebApp?</h2>
+            <h2 className="section-title text-[#000000] dark:text-white mb-0">Why Use Our App?</h2>
             <Heart className="text-red-500 ml-2" size={32} />
           </motion.div>
           <p className="text-base sm:text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
@@ -101,7 +101,7 @@ const WhyUseApp = () => {
             </h3>
             <p className="text-base sm:text-lg text-gray-600 dark:text-gray-300 mb-6 sm:mb-8 leading-relaxed">
               Whether you're a lifelong resident, someone who moved away but wants to stay connected, 
-              or a curious visitor wanting to learn about our beautiful village, this Web app is your gateway 
+              or a curious visitor wanting to learn about our beautiful village, this app is your gateway 
               to experiencing the warmth and heritage of Paluguntipalli.
             </p>
             <div className="flex flex-wrap justify-center items-center gap-4 sm:gap-6">

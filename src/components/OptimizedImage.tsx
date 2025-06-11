@@ -1,6 +1,9 @@
 
-import React, { useState } from 'react';
+import React, { useState, useCallback, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import LoadingSpinner from './ui/LoadingSpinner';
+import ImageError from './ui/ImageError';
+import NavigationArrows from './ui/NavigationArrows';
 
 interface OptimizedImageProps {
   src: string;
@@ -27,93 +30,106 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
 }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
+  const [imageSrc, setImageSrc] = useState<string>('');
+  const imgRef = useRef<HTMLImageElement>(null);
 
-  // Convert to WebP if supported and optimize URL
-  const getOptimizedSrc = (originalSrc: string) => {
+  // Enhanced image optimization with WebP support
+  const getOptimizedSrc = useCallback((originalSrc: string) => {
     if (originalSrc.includes('unsplash.com')) {
-      // Add Unsplash optimization parameters
       const separator = originalSrc.includes('?') ? '&' : '?';
-      return `${originalSrc}${separator}auto=format&fit=crop&w=800&q=80&fm=webp`;
+      return `${originalSrc}${separator}auto=format&fit=crop&w=800&q=85&fm=webp`;
     }
     return originalSrc;
-  };
+  }, []);
 
-  const optimizedSrc = getOptimizedSrc(src);
+  // Intersection Observer for lazy loading optimization
+  useEffect(() => {
+    if (loading === 'eager' || priority) {
+      setImageSrc(getOptimizedSrc(src));
+      return;
+    }
 
-  const handleLoad = () => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries;
+        if (entry.isIntersecting) {
+          setImageSrc(getOptimizedSrc(src));
+          observer.disconnect();
+        }
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '50px',
+      }
+    );
+
+    const currentRef = imgRef.current;
+    if (currentRef) {
+      observer.observe(currentRef);
+    }
+
+    return () => {
+      if (currentRef) {
+        observer.unobserve(currentRef);
+      }
+    };
+  }, [src, loading, priority, getOptimizedSrc]);
+
+  const handleLoad = useCallback(() => {
     setIsLoading(false);
-  };
+  }, []);
 
-  const handleError = () => {
+  const handleError = useCallback(() => {
     setIsLoading(false);
     setHasError(true);
-  };
+  }, []);
 
   return (
-    <div className={`relative overflow-hidden ${aspectRatio} ${className}`}>
+    <div className={`relative overflow-hidden ${aspectRatio} ${className}`} ref={imgRef}>
       {/* Loading Animation */}
-      {isLoading && (
-        <div className="absolute inset-0 flex items-center justify-center bg-gray-200 dark:bg-gray-700">
-          <motion.div
-            className="w-8 h-8 border-4 border-heritage dark:border-white border-t-transparent rounded-full"
-            animate={{ rotate: 360 }}
-            transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-          />
-        </div>
-      )}
+      {isLoading && imageSrc && <LoadingSpinner />}
 
       {/* Error State */}
-      {hasError && (
-        <div className="absolute inset-0 flex items-center justify-center bg-gray-200 dark:bg-gray-700 text-gray-500 dark:text-gray-400 text-sm">
-          <div className="text-center">
-            <div className="mb-2">📷</div>
-            <div>Failed to load</div>
-          </div>
-        </div>
+      {hasError && <ImageError />}
+
+      {/* Placeholder when no src is set yet */}
+      {!imageSrc && !hasError && (
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-700 animate-pulse" />
       )}
 
-      {/* Main Image */}
-      <motion.img
-        src={optimizedSrc}
-        alt={alt}
-        loading={loading}
-        className={`w-full h-full object-cover transition-opacity duration-300 ${
-          isLoading ? 'opacity-0' : 'opacity-100'
-        }`}
-        onLoad={handleLoad}
-        onError={handleError}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: isLoading ? 0 : 1 }}
-        transition={{ duration: 0.3 }}
-      />
-
-      {/* Navigation arrows - only shown when explicitly enabled */}
-      {showNavigationArrows && !isLoading && !hasError && (
-        <>
-          <button
-            onClick={onPrevious}
-            className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-all duration-200 backdrop-blur-sm"
-            aria-label="Previous image"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="m15 18-6-6 6-6"/>
-            </svg>
-          </button>
-          <button
-            onClick={onNext}
-            className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-all duration-200 backdrop-blur-sm"
-            aria-label="Next image"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="m9 18 6-6-6-6"/>
-            </svg>
-          </button>
-        </>
+      {/* Main Image with enhanced transitions */}
+      {imageSrc && (
+        <motion.img
+          src={imageSrc}
+          alt={alt}
+          loading={loading}
+          className={`w-full h-full object-cover transition-all duration-500 ${
+            isLoading ? 'opacity-0 scale-110' : 'opacity-100 scale-100'
+          }`}
+          onLoad={handleLoad}
+          onError={handleError}
+          initial={{ opacity: 0, scale: 1.1 }}
+          animate={{ 
+            opacity: isLoading ? 0 : 1, 
+            scale: isLoading ? 1.1 : 1 
+          }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          style={{
+            imageRendering: '-webkit-optimize-contrast',
+            backfaceVisibility: 'hidden',
+            transform: 'translateZ(0)',
+          }}
+        />
       )}
 
-      {/* Lazy loading intersection observer for better performance */}
-      {priority && (
-        <link rel="preload" as="image" href={optimizedSrc} />
+      {/* Navigation arrows */}
+      {showNavigationArrows && !isLoading && !hasError && imageSrc && (
+        <NavigationArrows onPrevious={onPrevious} onNext={onNext} />
+      )}
+
+      {/* Preload for priority images */}
+      {priority && imageSrc && (
+        <link rel="preload" as="image" href={imageSrc} />
       )}
     </div>
   );

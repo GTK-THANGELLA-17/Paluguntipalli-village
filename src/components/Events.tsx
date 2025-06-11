@@ -1,8 +1,10 @@
+
 import { Button } from "@/components/ui/button";
 import { Calendar, ChevronDown, ChevronUp } from "lucide-react";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import OptimizedImage from "./OptimizedImage";
+import VideoPlayer from "./VideoPlayer";
 
 const eventImages = [
   "/gundam.jpg",
@@ -14,26 +16,27 @@ const eventImages = [
   "/Thangella Swamy.jpg"
 ];
 
-const festivalVideos = [
-  { 
-    type: 'video', 
-    src: "/pedda sarigesu 1.mp4",
-    alt: "Festival Video 1",
-    thumbnail: "/pedda sarigesu 1.jpg"
+const videoData = [
+  {
+    id: 1,
+    title: "Pedda Sarigesu Festival Video 1",
+    videoSrc: "/pedda sarigesu 1.mp4",
+    thumbnailSrc: "/pedda sarigesu 1.jpg"
   },
-  { 
-    type: 'video', 
-    src: "/pedda sarigesu 3.mp4",
-    alt: "Festival Video 2",
-    thumbnail: "/pedda sarigesu image 4.jpg"
+  {
+    id: 2,
+    title: "Pedda Sarigesu Festival Video 2",
+    videoSrc: "/pedda sarigesu 3.mp4",
+    thumbnailSrc: "/pedda sarigesu image 4.jpg"
   },
-  { 
-    type: 'video', 
-    src: "/pedda sarigesu 2.mp4",
-    alt: "Festival Video 3",
-    thumbnail: "/pedda sarigesu 2.jpg"
+  {
+    id: 3,
+    title: "Pedda Sarigesu Festival Video 3",
+    videoSrc: "/pedda sarigesu 2.mp4",
+    thumbnailSrc: "/pedda sarigesu 2.jpg"
   }
 ];
+
 
 const Events = () => {
   const [showAllImages, setShowAllImages] = useState(false);
@@ -52,9 +55,23 @@ const Events = () => {
   return (
     <section id="main-events" className="py-12 sm:py-16 lg:py-20 bg-white dark:bg-[#252525]">
       <div className="container mx-auto px-4">
-        <h2 className="section-title text-[#000000] dark:text-white" data-aos="fade-up">Main Events</h2>
+        <motion.h2 
+          className="section-title text-[#000000] dark:text-white" 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          Main Events
+        </motion.h2>
         
-        <div className="bg-white dark:bg-[#2a2a2a] rounded-xl shadow-xl p-6 sm:p-8 mb-8 sm:mb-12" data-aos="fade-up">
+        <motion.div 
+          className="bg-white dark:bg-[#2a2a2a] rounded-xl shadow-xl p-6 sm:p-8 mb-8 sm:mb-12" 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: 0.2 }}
+        >
           <div className="flex flex-col lg:flex-row gap-6 sm:gap-8 items-center">
             <div className="w-full lg:w-1/3">
               <div className="relative aspect-square rounded-xl overflow-hidden shadow-lg border-4 border-heritage dark:border-white">
@@ -88,27 +105,37 @@ const Events = () => {
               </Button>
             </div>
           </div>
-        </div>
+        </motion.div>
         
-        <h3 className="text-xl sm:text-2xl font-bold mb-6 sm:mb-8 text-center font-playfair text-[#000000] dark:text-white" data-aos="fade-up">
+        <motion.h3 
+          className="text-xl sm:text-2xl font-bold mb-6 sm:mb-8 text-center font-playfair text-[#000000] dark:text-white" 
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
           Peerla Panguda Images
-        </h3>
+        </motion.h3>
         
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {visibleImages.map((image, index) => (
-            <div 
+            <motion.div 
               key={index} 
               className="gallery-item relative group"
-              data-aos="zoom-in"
-              data-aos-delay={100 * index}
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              whileHover={{ y: -5 }}
             >
               <OptimizedImage
                 src={image}
                 alt={`Peerla Panguda Image ${index + 1}`}
                 aspectRatio="aspect-[4/3]"
                 className="rounded-lg w-full hover:scale-105 transition-transform duration-300"
+                loading="lazy"
               />
-            </div>
+            </motion.div>
           ))}
         </div>
         
@@ -131,25 +158,34 @@ const Events = () => {
             )}
           </Button>
         </div>
-
-        <h3 className="text-xl sm:text-2xl font-bold mt-12 sm:mt-16 mb-6 sm:mb-8 text-center font-playfair text-[#000000] dark:text-white" data-aos="fade-up">
+        
+        <motion.h3 
+          className="text-xl sm:text-2xl font-bold mt-12 sm:mt-16 mb-6 sm:mb-8 text-center font-playfair text-[#000000] dark:text-white" 
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
           Peerla Panguda Videos
-        </h3>
-
+        </motion.h3>
+        
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-          {festivalVideos.map((video, index) => (
-            <div key={index} className="gallery-item relative group" data-aos="zoom-in">
-              <div className="aspect-[4/3] relative overflow-hidden rounded-lg">
-                <video
-                  controls
-                  poster={video.thumbnail}
-                  className="w-full h-full rounded-lg"
-                >
-                  <source src={video.src} type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
-              </div>
-            </div>
+          {videoData.map((video, index) => (
+            <motion.div 
+              key={video.id} 
+              className="gallery-item relative group"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+            >
+              <VideoPlayer
+                videoSrc={video.videoSrc}
+                thumbnailSrc={video.thumbnailSrc}
+                title={video.title}
+                className="w-full"
+              />
+            </motion.div>
           ))}
         </div>
       </div>

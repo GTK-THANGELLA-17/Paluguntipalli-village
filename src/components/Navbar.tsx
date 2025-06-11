@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import { Menu, Home, Image, Calendar, MapPin, Cloud, Info, Users, Bell, Globe, Music, Volume2, Play, Pause } from 'lucide-react';
+import { Menu, Home, Image, Calendar, MapPin, Cloud, Info, Users, Bell, Globe, Music, Volume2, Play, Pause, Star, AlertTriangle } from 'lucide-react';
 import { 
   DropdownMenu, 
   DropdownMenuTrigger, 
@@ -26,6 +26,7 @@ const dropdownNavLinks = [
     name: 'Explore',
     items: [
       { name: 'About', href: '#about', icon: <Info size={18} /> },
+      { name: 'Why', href: '#why-use-app', icon: <Star size={18} /> },
       { name: 'Gallery', href: '#gallery', icon: <Image size={18} /> },
       { name: 'Today\'s Events', href: '#events-today', icon: <Calendar size={18} /> },
       { name: 'Places', href: '#places', icon: <MapPin size={18} /> },
@@ -38,7 +39,8 @@ const dropdownNavLinks = [
     items: [
       { name: '360° Views', href: '#views360', icon: <MapPin size={18} /> },
       { name: 'Members', href: '#members', icon: <Users size={18} /> },
-      { name: 'Announcements', href: '#important', icon: <Bell size={18} /> }
+      { name: 'Announcements', href: '#important', icon: <Bell size={18} /> },
+      { name: 'App Updates', href: '#app-updates', icon: <AlertTriangle size={18} /> }
     ]
   }
 ];

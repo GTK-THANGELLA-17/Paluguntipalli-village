@@ -87,6 +87,7 @@ const nearbyPlaces = [
   }
 ];
 
+
 const NearbyAttractions = () => {
   const { t } = useTranslation();
   const [activePlace, setActivePlace] = useState<number | null>(0);
