@@ -101,7 +101,7 @@ const Events = () => {
               </p>
               <Button className="bg-[#000000] hover:bg-[#333333] text-white dark:bg-[#000000] dark:hover:bg-[#333333] dark:text-white transition-all duration-300">
                 <Calendar size={16} className="mr-2 sm:w-[18px] sm:h-[18px]" />
-                <span className="text-sm sm:text-base">Next Event: July 2024</span>
+                <span className="text-sm sm:text-base">Next Event: July 2025</span>
               </Button>
             </div>
           </div>
